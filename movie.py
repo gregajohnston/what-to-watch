@@ -1,5 +1,5 @@
 """
-Movie stores an instance of the MovieLens data.
+Movies stores a single row of 'u.item' data from MovieLens.
 """
 
 
@@ -15,3 +15,7 @@ class Movie:
 
         del dictionary['']
         del dictionary[None]
+
+        # self.movie_item = {'movie_id': self.id,
+        #                     'movie_title': self.title,
+        #                     'genre': self.genre}
