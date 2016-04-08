@@ -1,0 +1,2 @@
+class UserLib:
+    pass
