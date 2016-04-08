@@ -1,4 +1,5 @@
 import csv
+import datetime
 
 """
 MovieLib stores the functions for calling data from the database.
@@ -11,20 +12,25 @@ class MovieLib:
     def read_from_item_file():
 
         with open('ml-100k/u.item', encoding='latin_1') as f:
-            return_dict = {}
-            reader = csv.DictReader(f,
-                                    fieldnames=['movie_id',
-                                                'movie_title',
-                                                '',
-                                                '',
-                                                'genre_id'], delimiter='|')
+            list_of_dicts = []
+            reader = csv.DictReader(f,fieldnames=['movie_id',
+                                                 'movie_title',
+                                                 'year_added',
+                                                 '',
+                                                 'imdb_url'], delimiter='|')
 
             for row in reader:
-                return_dict.update({'movie_id': row['movie_id'],
-                                    'movie_title': row['movie_title'],
-                                    'genre_id': row['genre_id']})
+                list_of_dicts.append(row)
 
-        return return_dict
+            # for dictionary in list_of_dicts:
+            #     dictionary['movie_id'] = int(dictionary['movie_id'])
+            #     dictionary['movie_title'] = dictionary['movie_title'][:-7]
+            #     dictionary['genre_id'] = dictionary[None]
+            #
+            #     del dictionary['']
+            #     del dictionary[None]
+
+        return list_of_dicts
 
 
 # def main():
