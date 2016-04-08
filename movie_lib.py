@@ -15,20 +15,23 @@ class MovieLib:
             list_of_dicts = []
             reader = csv.DictReader(f,fieldnames=['movie_id',
                                                  'movie_title',
-                                                 'year_added',
+                                                 'date_added',
                                                  '',
                                                  'imdb_url'], delimiter='|')
 
             for row in reader:
                 list_of_dicts.append(row)
 
-            # for dictionary in list_of_dicts:
-            #     dictionary['movie_id'] = int(dictionary['movie_id'])
-            #     dictionary['movie_title'] = dictionary['movie_title'][:-7]
-            #     dictionary['genre_id'] = dictionary[None]
-            #
-            #     del dictionary['']
-            #     del dictionary[None]
+        for dictionary in list_of_dicts:
+            dictionary['movie_id'] = int(dictionary['movie_id'])
+            dictionary['movie_title'] = dictionary['movie_title'][:-7]
+            dictionary['genre_id'] = dictionary[None]
+
+            for index, string in enumerate(dictionary['genre_id']):
+                dictionary['genre_id'][int(index)] = int(string)
+
+            del dictionary['']
+            del dictionary[None]
 
         return list_of_dicts
 
