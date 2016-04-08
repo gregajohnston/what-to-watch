@@ -1,8 +1,10 @@
 import csv
 import datetime
+from movie import Movie
+
 
 """
-MovieLib stores the functions for calling data from the database.
+MovieLib stores a list of Movie items.
 """
 class MovieLib:
 
@@ -12,7 +14,7 @@ class MovieLib:
     def read_from_item_file():
 
         with open('ml-100k/u.item', encoding='latin_1') as f:
-            list_of_dicts = []
+            list_of_movies = []
             reader = csv.DictReader(f,fieldnames=['movie_id',
                                                  'movie_title',
                                                  'date_added',
@@ -20,20 +22,11 @@ class MovieLib:
                                                  'imdb_url'], delimiter='|')
 
             for row in reader:
-                list_of_dicts.append(row)
+                list_of_movies.append(Movie(row))
 
-        for dictionary in list_of_dicts:
-            dictionary['movie_id'] = int(dictionary['movie_id'])
-            dictionary['movie_title'] = dictionary['movie_title'][:-7]
-            dictionary['genre_id'] = dictionary[None]
+        
 
-            for index, string in enumerate(dictionary['genre_id']):
-                dictionary['genre_id'][int(index)] = int(string)
-
-            del dictionary['']
-            del dictionary[None]
-
-        return list_of_dicts
+        return list_of_movies
 
 
 # def main():
