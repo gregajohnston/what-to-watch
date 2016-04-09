@@ -1,12 +1,12 @@
 """
-User stores a single row of 'u.user' data from MovieLens.
+User stores a single row of 'u.user' from MovieLens.
 """
 
 class User:
 
     def __init__(self, dictionary):
 
-        self.id = int(dictionary['user_id'])
+        self.user_id = int(dictionary['user_id'])
         self.age = int(dictionary['age'])
         self.gender = dictionary['gender']
         self.occupation = dictionary['occupation']

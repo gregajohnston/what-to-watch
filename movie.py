@@ -1,13 +1,12 @@
 """
-Movies stores a single row of 'u.item' data from MovieLens.
+Movies stores a single row of 'u.item' from MovieLens.
 """
-
 
 class Movie:
 
     def __init__(self, dictionary):
 
-        self.id = int(dictionary['movie_id'])
+        self.movie_id = int(dictionary['movie_id'])
         self.title = dictionary['movie_title'][:-7]
         self.genre = []
         for item in dictionary[None]:
@@ -15,7 +14,3 @@ class Movie:
 
         del dictionary['']
         del dictionary[None]
-
-        # self.movie_item = {'movie_id': self.id,
-        #                     'movie_title': self.title,
-        #                     'genre': self.genre}
