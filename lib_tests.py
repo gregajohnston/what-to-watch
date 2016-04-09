@@ -49,3 +49,20 @@ def test_format_data_object():
     assert rate.user_id == 196
     assert rate.movie_id == 242
     assert rate.rating == 3
+
+
+def test_find_all_ratings_movie():
+    pass
+#    assert type(find_all_ratings_for_movie(1)) == list
+
+def test_find_average_ratings_movie():
+    pass
+#    assert type(find_average_ratings_for_movie(1)) == float
+
+def test_find_name_movie():
+    pass
+#    assert type(find_name_for_movie(1)) == str
+
+def test_find_all_ratings_user():
+    pass
+#    assert type(find_all_ratings_for_user(1)) == list
