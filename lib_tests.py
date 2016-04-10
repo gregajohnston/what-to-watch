@@ -39,6 +39,7 @@ def test_format_user_object():
     assert user.user_id == 1
     assert user.gender == "M"
 
+
 rate_lib = RatingLib().read_from_data_file()
 rate = rate_lib[0]
 def test_read_from_data_file():
@@ -53,23 +54,21 @@ def test_format_data_object():
     assert rate.movie_id == 242
     assert rate.rating == 3
 
-test_case = find_all_ratings_for_movie(1, rate_lib)
-def test_find_all_ratings_for_movie():
-    pass
-    #assert type(test_case) == list
-    #assert test_case[1] == 5
-    #assert test_case[10] == 5
+
+test_case_one = find_all_ratings_objects_by_movie_id(1, rate_lib)
+def test_find_all_ratings_objects_by_movie_id():
+    assert type(test_case_one) == list
+    assert test_case_one[1].rating == 5
+    assert test_case_one[10].rating == 5
 
 
-test_case = find_average_ratings_for_movie(1, rate_lib)
-def test_find_average_ratings_for_movie():
-    assert type(test_case) == float
-    assert test_case >= 0 and test_case <= 5
+test_case_two = find_average_rating_value_by_movie_id(test_case_one)
+def test_find_average_rating_value_by_movie_id():
+    assert type(test_case_two) == float
+    assert test_case_two >= 0 and test_case_two <= 5
 
-def test_find_name_for_movie():
-    pass
-#    assert type(find_name_for_movie(1)) == str
+def test_find_title_string_for_movie():
+    assert type(find_title_string_for_movie(1, mov_lib)) == str
 
 def test_find_all_ratings_for_user():
-    pass
-#    assert type(find_all_ratings_for_user(1)) == list
+    assert type(find_all_ratings_for_user(1, rate_lib)) == list
