@@ -9,6 +9,9 @@ from movie_lib import MovieLib
 from rating import Rating
 from rating_lib import RatingLib
 
+from main import *
+
+
 mov_lib = MovieLib().read_from_item_file()
 m = mov_lib[0]
 def test_read_from_item_file():
@@ -50,19 +53,23 @@ def test_format_data_object():
     assert rate.movie_id == 242
     assert rate.rating == 3
 
-
-def test_find_all_ratings_movie():
+test_case = find_all_ratings_for_movie(1, rate_lib)
+def test_find_all_ratings_for_movie():
     pass
-#    assert type(find_all_ratings_for_movie(1)) == list
+    #assert type(test_case) == list
+    #assert test_case[1] == 5
+    #assert test_case[10] == 5
 
-def test_find_average_ratings_movie():
-    pass
-#    assert type(find_average_ratings_for_movie(1)) == float
 
-def test_find_name_movie():
+test_case = find_average_ratings_for_movie(1, rate_lib)
+def test_find_average_ratings_for_movie():
+    assert type(test_case) == float
+    assert test_case >= 0 and test_case <= 5
+
+def test_find_name_for_movie():
     pass
 #    assert type(find_name_for_movie(1)) == str
 
-def test_find_all_ratings_user():
+def test_find_all_ratings_for_user():
     pass
 #    assert type(find_all_ratings_for_user(1)) == list

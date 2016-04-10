@@ -9,4 +9,4 @@ class Rating:
         self.user_id = int(dictionary['user_id'])
         self.movie_id = int(dictionary['item_id'])
         self.rating = int(dictionary['rating'])
-        self.timestamp = dictionary['timestamp']
+        self.timestamp = int(dictionary['timestamp'])
