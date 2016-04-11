@@ -14,3 +14,6 @@ class Movie:
 
         del dictionary['']
         del dictionary[None]
+
+        self.average_rating = -1
+        self.rating_count = -1
