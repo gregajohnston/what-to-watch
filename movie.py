@@ -17,3 +17,7 @@ class Movie:
 
         self.average_rating = -1
         self.rating_count = -1
+
+
+    def __str__(self):
+        return self.title

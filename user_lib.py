@@ -7,8 +7,8 @@ UserLib stores a list of User items.
 """
 class UserLib:
 
-    def __init__(self):
-        self.list_of_users = []
+    def __init__(self, list_of_users = []):
+        self.list_of_users = list_of_users
 
     def read_from_user_file(self):
         self.list_of_users = []

@@ -7,8 +7,8 @@ RatingLib stores a list of Rating items.
 """
 class RatingLib:
 
-    def __init__(self):
-        self.list_of_ratings = []
+    def __init__(self, list_of_ratings = []):
+        self.list_of_ratings = list_of_ratings
 
 
     def read_from_data_file(self):
