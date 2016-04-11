@@ -3,6 +3,7 @@ class PrintHandler:
     def print_welcome():
 
         print("Welcome to GREGFLIX")
+        print("Setting up databases...")
 
 
     def print_user_options():

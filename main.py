@@ -3,10 +3,7 @@ from user_lib import UserLib
 from rating_lib import RatingLib
 from print_handler import PrintHandler
 
-
 NUMBER_OF_MOVIES = 1682
-
-
 
 
 def initialize_database():
@@ -54,28 +51,36 @@ def main():
     movie_library, user_library, rating_library = initialize_database()
     PrintHandler.print_user_options()
 
-    while user_input.lower() != 'quit'
+    while True:
+
         user_input = input("> ")
+        if type(user_input) == str:
+            if user_input.lower() == 'quit':
+                print("Exiting the program.")
+                break
+
         try:
             user_input = int(user_input)
-        except TypeError:
+        except ValueError:
             print("Not a number")
             continue
 
         if user_input == 0:
             PrintHandler.print_top_ten()
             return_list = movie_library.find_best_rated_movies(50, 10)
-
             for item in return_list:
                 print(item)
 
-        if user_input >= 1 and user_input <= 943:
+        elif user_input >= 1 and user_input <= 943:
             PrintHandler.print_your_top_ten()
             return_list = find_best_rated_user_not_seen(user_input,
                                         rating_library, movie_library, 50 ,10)
 
             for item in return_list:
                 print(item)
+
+        else:
+            print("Please choose a number between 0 and 943.")
 
 
 if __name__ == '__main__':
