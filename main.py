@@ -55,6 +55,11 @@ def main():
 
         user_input = input("> ")
         if type(user_input) == str:
+            if user_input.lower() == 'compare':
+                user_input = input("Enter a user number\n> ")
+                mv, mu = rating_library.find_best_user_match(user_input)
+                print('similarity: {}, user: {}'.format(mv, mu))
+                continue
             if user_input.lower() == 'quit':
                 print("Exiting the program.")
                 break

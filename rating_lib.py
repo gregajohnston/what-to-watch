@@ -1,6 +1,8 @@
-
 import csv
+import math
 from rating import Rating
+
+NUMBER_OF_USERS = 943
 
 """
 RatingLib stores a list of Rating items.
@@ -55,3 +57,54 @@ class RatingLib:
             numbers_list.append(rating_obj.rating)
 
         return sum(numbers_list)/len(numbers_list)
+
+
+    def euclidean_distance(self, v, w):
+        if len(v) is 0:
+            return 0
+
+        differences = [v[idx] - w[idx] for idx in range(len(v))]
+        squares = [diff ** 2 for diff in differences]
+        sum_of_squares = sum(squares)
+
+        return 1 / (1+ math.sqrt(sum_of_squares))
+
+    def is_user_match_helper(self, lookup_id_one, lookup_id_two):
+        list_one = self.find_all_ratings_objects_by_user_id(lookup_id_one)
+        list_one.sort(key=lambda x: x.movie_id, reverse=True)
+        list_two = self.find_all_ratings_objects_by_user_id(lookup_id_two)
+        list_two.sort(key=lambda x: x.movie_id, reverse=True)
+        list_one_ids = set(x.movie_id for x in list_one)
+        list_two_ids = set(x.movie_id for x in list_two)
+
+        inter_one = [item for item in list_one
+                            if item.movie_id in list_two_ids]
+        inter_two = [item for item in list_two
+                            if item.movie_id in list_one_ids]
+
+        return inter_one, inter_two, lookup_id_two
+
+    def is_user_match(self, list_one, list_two, lookup_id_two):
+
+        inter_one, inter_two, lookup_id_two = is_user_match_helper(lookup_id_one, lookup_id_two)
+
+        pass_one, pass_two = [], []
+        for item in inter_one:
+            pass_one.append(item.rating)
+        for item in inter_two:
+            pass_two.append(item.rating)
+
+        return self.euclidean_distance(pass_one, pass_two), lookup_id_two
+
+
+    def find_best_user_match(self, lookup_id):
+
+        match_value, match_user = 0, 0
+        temp_value, temp_user = 0, 0
+
+        for number in range(1, NUMBER_OF_USERS + 1):
+             temp_value, temp_user = self.is_user_match(lookup_id, number)
+             if temp_value > match_value:
+                 match_value, match_user = temp_value, temp_user
+
+        return match_value, match_user
